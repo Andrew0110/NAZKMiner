@@ -10,12 +10,18 @@
 		1BEF9B301EB2F01A00D85720 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B2F1EB2F01A00D85720 /* main.m */; };
 		1BEF9B331EB2F01A00D85720 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B321EB2F01A00D85720 /* AppDelegate.m */; };
 		1BEF9B361EB2F01A00D85720 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B351EB2F01A00D85720 /* ViewController.m */; };
-		1BEF9B391EB2F01A00D85720 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BEF9B371EB2F01A00D85720 /* Main.storyboard */; };
 		1BEF9B3C1EB2F01A00D85720 /* NAZKMiner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B3A1EB2F01A00D85720 /* NAZKMiner.xcdatamodeld */; };
 		1BEF9B3E1EB2F01A00D85720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BEF9B3D1EB2F01A00D85720 /* Assets.xcassets */; };
 		1BEF9B411EB2F01A00D85720 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BEF9B3F1EB2F01A00D85720 /* LaunchScreen.storyboard */; };
 		1BEF9B4C1EB2F01A00D85720 /* NAZKMinerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B4B1EB2F01A00D85720 /* NAZKMinerTests.m */; };
 		1BEF9B571EB2F01A00D85720 /* NAZKMinerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B561EB2F01A00D85720 /* NAZKMinerUITests.m */; };
+		1BEF9B691EB2FE5800D85720 /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B681EB2FE5800D85720 /* PersonTableViewCell.m */; };
+		1BEF9B6C1EB2FEF600D85720 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B6B1EB2FEF600D85720 /* Person.m */; };
+		1BEF9B711EB3128900D85720 /* PersonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B701EB3128900D85720 /* PersonSearchView.m */; };
+		1BEF9B741EB3B08B00D85720 /* NazkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */; };
+		1BEF9BB01EB3E4B900D85720 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */; };
+		1BEF9BBF1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BBC1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m */; };
+		1BEF9BC01EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BBE1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +48,6 @@
 		1BEF9B321EB2F01A00D85720 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1BEF9B341EB2F01A00D85720 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1BEF9B351EB2F01A00D85720 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1BEF9B381EB2F01A00D85720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1BEF9B3B1EB2F01A00D85720 /* NAZKMiner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NAZKMiner.xcdatamodel; sourceTree = "<group>"; };
 		1BEF9B3D1EB2F01A00D85720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BEF9B401EB2F01A00D85720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +58,20 @@
 		1BEF9B521EB2F01A00D85720 /* NAZKMinerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NAZKMinerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEF9B561EB2F01A00D85720 /* NAZKMinerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAZKMinerUITests.m; sourceTree = "<group>"; };
 		1BEF9B581EB2F01A00D85720 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BEF9B671EB2FE5800D85720 /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
+		1BEF9B681EB2FE5800D85720 /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
+		1BEF9B6A1EB2FEF600D85720 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		1BEF9B6B1EB2FEF600D85720 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		1BEF9B6F1EB3128900D85720 /* PersonSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSearchView.h; sourceTree = "<group>"; };
+		1BEF9B701EB3128900D85720 /* PersonSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSearchView.m; sourceTree = "<group>"; };
+		1BEF9B721EB3B08B00D85720 /* NazkAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NazkAPIManager.h; sourceTree = "<group>"; };
+		1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NazkAPIManager.m; sourceTree = "<group>"; };
+		1BEF9BAE1EB3E4B900D85720 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		1BEF9BBB1EB4C37700D85720 /* NAZKPerson+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NAZKPerson+CoreDataClass.h"; path = "../NAZKPerson+CoreDataClass.h"; sourceTree = "<group>"; };
+		1BEF9BBC1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NAZKPerson+CoreDataClass.m"; path = "../NAZKPerson+CoreDataClass.m"; sourceTree = "<group>"; };
+		1BEF9BBD1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NAZKPerson+CoreDataProperties.h"; path = "../NAZKPerson+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1BEF9BBE1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NAZKPerson+CoreDataProperties.m"; path = "../NAZKPerson+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +126,12 @@
 				1BEF9B321EB2F01A00D85720 /* AppDelegate.m */,
 				1BEF9B341EB2F01A00D85720 /* ViewController.h */,
 				1BEF9B351EB2F01A00D85720 /* ViewController.m */,
-				1BEF9B371EB2F01A00D85720 /* Main.storyboard */,
+				1BEF9BAE1EB3E4B900D85720 /* WebViewController.h */,
+				1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */,
+				1BEF9B761EB3B15600D85720 /* API */,
+				1BEF9B6E1EB3038D00D85720 /* View */,
+				1BEF9B6D1EB2FEFF00D85720 /* Model */,
+				1BEF9BB41EB49F9600D85720 /* Datastore */,
 				1BEF9B3D1EB2F01A00D85720 /* Assets.xcassets */,
 				1BEF9B3F1EB2F01A00D85720 /* LaunchScreen.storyboard */,
 				1BEF9B421EB2F01A00D85720 /* Info.plist */,
@@ -141,6 +165,46 @@
 				1BEF9B581EB2F01A00D85720 /* Info.plist */,
 			);
 			path = NAZKMinerUITests;
+			sourceTree = "<group>";
+		};
+		1BEF9B6D1EB2FEFF00D85720 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BEF9B6A1EB2FEF600D85720 /* Person.h */,
+				1BEF9B6B1EB2FEF600D85720 /* Person.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1BEF9B6E1EB3038D00D85720 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BEF9B6F1EB3128900D85720 /* PersonSearchView.h */,
+				1BEF9B701EB3128900D85720 /* PersonSearchView.m */,
+				1BEF9B671EB2FE5800D85720 /* PersonTableViewCell.h */,
+				1BEF9B681EB2FE5800D85720 /* PersonTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1BEF9B761EB3B15600D85720 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1BEF9B721EB3B08B00D85720 /* NazkAPIManager.h */,
+				1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		1BEF9BB41EB49F9600D85720 /* Datastore */ = {
+			isa = PBXGroup;
+			children = (
+				1BEF9BBB1EB4C37700D85720 /* NAZKPerson+CoreDataClass.h */,
+				1BEF9BBC1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m */,
+				1BEF9BBD1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.h */,
+				1BEF9BBE1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m */,
+			);
+			name = Datastore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +274,6 @@
 				TargetAttributes = {
 					1BEF9B2A1EB2F01900D85720 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = AFK9K52BRT;
 						ProvisioningStyle = Automatic;
 					};
 					1BEF9B461EB2F01A00D85720 = {
@@ -254,7 +317,6 @@
 			files = (
 				1BEF9B411EB2F01A00D85720 /* LaunchScreen.storyboard in Resources */,
 				1BEF9B3E1EB2F01A00D85720 /* Assets.xcassets in Resources */,
-				1BEF9B391EB2F01A00D85720 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,10 +341,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BEF9B6C1EB2FEF600D85720 /* Person.m in Sources */,
 				1BEF9B361EB2F01A00D85720 /* ViewController.m in Sources */,
 				1BEF9B3C1EB2F01A00D85720 /* NAZKMiner.xcdatamodeld in Sources */,
 				1BEF9B331EB2F01A00D85720 /* AppDelegate.m in Sources */,
+				1BEF9B741EB3B08B00D85720 /* NazkAPIManager.m in Sources */,
 				1BEF9B301EB2F01A00D85720 /* main.m in Sources */,
+				1BEF9BC01EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m in Sources */,
+				1BEF9BBF1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m in Sources */,
+				1BEF9BB01EB3E4B900D85720 /* WebViewController.m in Sources */,
+				1BEF9B691EB2FE5800D85720 /* PersonTableViewCell.m in Sources */,
+				1BEF9B711EB3128900D85720 /* PersonSearchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,14 +387,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1BEF9B371EB2F01A00D85720 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BEF9B381EB2F01A00D85720 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1BEF9B3F1EB2F01A00D85720 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -378,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -420,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -431,11 +492,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AFK9K52BRT;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NAZKMiner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NodeAds.NAZKMiner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -443,11 +507,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AFK9K52BRT;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NAZKMiner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NodeAds.NAZKMiner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
