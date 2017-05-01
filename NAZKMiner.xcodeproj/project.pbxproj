@@ -24,6 +24,13 @@
 		1BEF9B711EB3128900D85720 /* PersonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B701EB3128900D85720 /* PersonSearchView.m */; };
 		1BEF9B741EB3B08B00D85720 /* NazkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */; };
 		1BEF9BB01EB3E4B900D85720 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */; };
+		1BEFC4781EB751D6004A6241 /* INSDataStackContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC46E1EB751D6004A6241 /* INSDataStackContainer.m */; };
+		1BEFC4791EB751D6004A6241 /* INSPersistentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC4701EB751D6004A6241 /* INSPersistentContainer.m */; };
+		1BEFC47A1EB751D6004A6241 /* INSPersistentStoreDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC4731EB751D6004A6241 /* INSPersistentStoreDescription.m */; };
+		1BEFC47B1EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC4751EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.m */; };
+		1BEFC47C1EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC4771EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.m */; };
+		1BEFC47F1EB75A22004A6241 /* StarredPersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC47E1EB75A22004A6241 /* StarredPersonView.m */; };
+		1BEFC4821EB75A62004A6241 /* StarredPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC4811EB75A62004A6241 /* StarredPersonTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +85,21 @@
 		1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NazkAPIManager.m; sourceTree = "<group>"; };
 		1BEF9BAE1EB3E4B900D85720 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		1BEFC46D1EB751D6004A6241 /* INSDataStackContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSDataStackContainer.h; sourceTree = "<group>"; };
+		1BEFC46E1EB751D6004A6241 /* INSDataStackContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSDataStackContainer.m; sourceTree = "<group>"; };
+		1BEFC46F1EB751D6004A6241 /* INSPersistentContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSPersistentContainer.h; sourceTree = "<group>"; };
+		1BEFC4701EB751D6004A6241 /* INSPersistentContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSPersistentContainer.m; sourceTree = "<group>"; };
+		1BEFC4711EB751D6004A6241 /* INSPersistentContainerMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSPersistentContainerMacros.h; sourceTree = "<group>"; };
+		1BEFC4721EB751D6004A6241 /* INSPersistentStoreDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSPersistentStoreDescription.h; sourceTree = "<group>"; };
+		1BEFC4731EB751D6004A6241 /* INSPersistentStoreDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSPersistentStoreDescription.m; sourceTree = "<group>"; };
+		1BEFC4741EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+iOS10Additions.h"; sourceTree = "<group>"; };
+		1BEFC4751EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+iOS10Additions.m"; sourceTree = "<group>"; };
+		1BEFC4761EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPersistentStoreCoordinator+INSPersistentStoreDescription.h"; sourceTree = "<group>"; };
+		1BEFC4771EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPersistentStoreCoordinator+INSPersistentStoreDescription.m"; sourceTree = "<group>"; };
+		1BEFC47D1EB75A22004A6241 /* StarredPersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarredPersonView.h; sourceTree = "<group>"; };
+		1BEFC47E1EB75A22004A6241 /* StarredPersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarredPersonView.m; sourceTree = "<group>"; };
+		1BEFC4801EB75A62004A6241 /* StarredPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarredPersonTableViewCell.h; sourceTree = "<group>"; };
+		1BEFC4811EB75A62004A6241 /* StarredPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarredPersonTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +150,7 @@
 		1BEF9B2D1EB2F01A00D85720 /* NAZKMiner */ = {
 			isa = PBXGroup;
 			children = (
+				1BEFC46C1EB751D6004A6241 /* INSPersistanceContainer */,
 				1BEF9B311EB2F01A00D85720 /* AppDelegate.h */,
 				1BEF9B321EB2F01A00D85720 /* AppDelegate.m */,
 				1BEF9B341EB2F01A00D85720 /* ViewController.h */,
@@ -191,6 +214,10 @@
 				1BEF9B701EB3128900D85720 /* PersonSearchView.m */,
 				1BEF9B671EB2FE5800D85720 /* PersonTableViewCell.h */,
 				1BEF9B681EB2FE5800D85720 /* PersonTableViewCell.m */,
+				1BEFC47D1EB75A22004A6241 /* StarredPersonView.h */,
+				1BEFC47E1EB75A22004A6241 /* StarredPersonView.m */,
+				1BEFC4801EB75A62004A6241 /* StarredPersonTableViewCell.h */,
+				1BEFC4811EB75A62004A6241 /* StarredPersonTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -215,6 +242,25 @@
 				1B0FE1571EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m */,
 			);
 			name = Datastore;
+			sourceTree = "<group>";
+		};
+		1BEFC46C1EB751D6004A6241 /* INSPersistanceContainer */ = {
+			isa = PBXGroup;
+			children = (
+				1BEFC46D1EB751D6004A6241 /* INSDataStackContainer.h */,
+				1BEFC46E1EB751D6004A6241 /* INSDataStackContainer.m */,
+				1BEFC46F1EB751D6004A6241 /* INSPersistentContainer.h */,
+				1BEFC4701EB751D6004A6241 /* INSPersistentContainer.m */,
+				1BEFC4711EB751D6004A6241 /* INSPersistentContainerMacros.h */,
+				1BEFC4721EB751D6004A6241 /* INSPersistentStoreDescription.h */,
+				1BEFC4731EB751D6004A6241 /* INSPersistentStoreDescription.m */,
+				1BEFC4741EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.h */,
+				1BEFC4751EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.m */,
+				1BEFC4761EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.h */,
+				1BEFC4771EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.m */,
+			);
+			name = INSPersistanceContainer;
+			path = INSPersistanceCoordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,13 +402,20 @@
 				1BEF9B3C1EB2F01A00D85720 /* NAZKMiner.xcdatamodeld in Sources */,
 				1B0FE15F1EB7123900B76D94 /* StarredViewController.m in Sources */,
 				1BEF9B331EB2F01A00D85720 /* AppDelegate.m in Sources */,
+				1BEFC4781EB751D6004A6241 /* INSDataStackContainer.m in Sources */,
+				1BEFC4821EB75A62004A6241 /* StarredPersonTableViewCell.m in Sources */,
+				1BEFC47A1EB751D6004A6241 /* INSPersistentStoreDescription.m in Sources */,
+				1BEFC47C1EB751D6004A6241 /* NSPersistentStoreCoordinator+INSPersistentStoreDescription.m in Sources */,
 				1BEF9B741EB3B08B00D85720 /* NazkAPIManager.m in Sources */,
+				1BEFC47F1EB75A22004A6241 /* StarredPersonView.m in Sources */,
 				1BEF9B301EB2F01A00D85720 /* main.m in Sources */,
 				1B0FE1591EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m in Sources */,
 				1B0FE15C1EB6403D00B76D94 /* DataStoreManager.m in Sources */,
 				1B0FE1581EB6399600B76D94 /* NAZKPerson+CoreDataClass.m in Sources */,
+				1BEFC4791EB751D6004A6241 /* INSPersistentContainer.m in Sources */,
 				1BEF9BB01EB3E4B900D85720 /* WebViewController.m in Sources */,
 				1BEF9B691EB2FE5800D85720 /* PersonTableViewCell.m in Sources */,
+				1BEFC47B1EB751D6004A6241 /* NSManagedObjectContext+iOS10Additions.m in Sources */,
 				1BEF9B711EB3128900D85720 /* PersonSearchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

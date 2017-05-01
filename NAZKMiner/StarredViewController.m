@@ -7,8 +7,8 @@
 //
 
 #import "StarredViewController.h"
-#import "PersonSearchView.h"
-#import "PersonTableViewCell.h"
+#import "StarredPersonView.h"
+#import "StarredPersonTableViewCell.h"
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "DataStoreManager.h"
@@ -16,9 +16,9 @@
 
 #import "NAZKPerson+CoreDataClass.h"
 
-@interface StarredViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface StarredViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UITextViewDelegate>
 
-@property (nonatomic) PersonSearchView *starredView;
+@property (nonatomic) StarredPersonView *starredView;
 @property (nonatomic) NSArray *persons;
 @property (nonatomic) NSSet *starredIDs;
 @property (nonatomic) DataStoreManager *dataManager;
@@ -27,11 +27,11 @@
 
 @implementation StarredViewController
 
-static NSString * const kPersonCellIdentifier = @"PersonSearchViewCell";
-static NSUInteger const kCellHeight = 80;
+static NSString * const kStarredPersonCellIdentifier = @"PersonSearchViewCell";
+static NSUInteger const kCellHeight = 120;
 
 - (void) loadView {
-    _starredView = [PersonSearchView new];
+    _starredView = [StarredPersonView new];
     self.view = _starredView;
 }
 
@@ -52,8 +52,7 @@ static NSUInteger const kCellHeight = 80;
     _dataManager = [DataStoreManager sharedManager];
     _persons = [_dataManager getAllPersons];
     
-    [_starredView.tableView registerClass: [PersonTableViewCell class]
-                      forCellReuseIdentifier: kPersonCellIdentifier];
+    [_starredView.tableView registerClass: [StarredPersonTableViewCell class] forCellReuseIdentifier: kStarredPersonCellIdentifier];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -103,16 +102,23 @@ static NSUInteger const kCellHeight = 80;
 forRowAtIndexPath:(NSIndexPath *)indexPath {
     NAZKPerson *person = (NAZKPerson*)_persons[indexPath.row];
     
-    [(PersonTableViewCell*)cell configureWithNAZKPerson:person];
+    [(StarredPersonTableViewCell*)cell configureWithNAZKPerson:person];
     
-    UIImageView *imageStarred = ((PersonTableViewCell*)cell).starred;
+    UITextView *notes = ((StarredPersonTableViewCell*)cell).notes;
+    notes.delegate = self;
+    notes.editable = YES;
+    notes.tag = indexPath.row;
+    
+
+    
+    UIImageView *imageStarred = ((StarredPersonTableViewCell*)cell).starred;
     imageStarred.image = [UIImage imageNamed:@"star"];
     imageStarred.tag = indexPath.row;
     imageStarred.userInteractionEnabled = true;
     [imageStarred addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(starClick:)]];
     
     if (person.linkPDF) {
-        UIImageView *linkView = ((PersonTableViewCell *)cell).linkPDF;
+        UIImageView *linkView = ((StarredPersonTableViewCell *)cell).linkPDF;
         linkView.image = [UIImage imageNamed:@"book"];
         linkView.tag = indexPath.row;
         linkView.userInteractionEnabled = true;
@@ -134,12 +140,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPersonCellIdentifier forIndexPath:indexPath];
+    StarredPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kStarredPersonCellIdentifier forIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    NAZKPerson *pers = _persons[textView.tag];
+    [_dataManager updateNote:textView.text forPerson:pers];
+}
+
+
 
 #pragma mark - UISearchBarDelegate
 

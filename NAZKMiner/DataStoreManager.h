@@ -20,6 +20,7 @@
 - (NSSet *)getAllIDs;
 - (NAZKPerson *)getPersonWithID:(NSString *)id;
 - (void)insertPerson:(Person *)person withNote:(NSString *)note;
+- (void)updateNote:(NSString *)note forPerson:(NAZKPerson *)person;
 - (void)removePersonWithID:(NSString *)id;
 - (void)removePerson:(NAZKPerson *)person;
 - (BOOL)havePersonWithID:(NSString *)id;

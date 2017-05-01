@@ -106,9 +106,28 @@ static NSUInteger const kCellHeight = 80;
         _personsInStarred[imageView.tag] = [NSNumber numberWithBool:NO];
         imageView.image = [UIImage imageNamed:@"empty_star"];
     } else {
-        [_dataManager insertPerson:person withNote:@""];
-        _personsInStarred[imageView.tag] = [NSNumber numberWithBool:YES];
-        imageView.image = [UIImage imageNamed:@"star"];
+        UIAlertController *alertController = [UIAlertController
+                    alertControllerWithTitle:@"Додати персону в обрані"
+                                    message:@"Можете ввести свій коментар"
+                            preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+         {
+             textField.placeholder = NSLocalizedString(@"Ваш коментар", @"Коментар");
+         }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [_dataManager insertPerson:person withNote:alertController.textFields.firstObject.text];
+                                       _personsInStarred[imageView.tag] = [NSNumber numberWithBool:YES];
+                                       imageView.image = [UIImage imageNamed:@"star"];
+                                   }];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
     }
 }
 

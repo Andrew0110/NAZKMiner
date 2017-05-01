@@ -113,6 +113,14 @@
 
 }
 
+- (void)updateNote:(NSString *)note forPerson:(NAZKPerson *)person {
+    if (person) {
+        person.notes = note;
+    }
+    [_context save:nil];
+}
+
+
 - (void)removePersonWithID:(NSString *)id {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"NAZKPerson" inManagedObjectContext:_context];
