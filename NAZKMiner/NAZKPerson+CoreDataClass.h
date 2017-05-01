@@ -2,7 +2,7 @@
 //  NAZKPerson+CoreDataClass.h
 //  NAZKMiner
 //
-//  Created by Andrew on 29.04.17.
+//  Created by Andrew on 30.04.17.
 //  Copyright © 2017 NodeAds. All rights reserved.
 //
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Person;
+@class NAZKPerson;
 
 @interface PersonTableViewCell : UITableViewCell
 
@@ -20,5 +21,7 @@
 @property (nonatomic) UIImageView   *linkPDF;
 
 - (void)configureWithPerson:(Person *)aPerson;
+- (void)configureWithNAZKPerson:(NAZKPerson *)aNAZKPerson;
+
 
 @end

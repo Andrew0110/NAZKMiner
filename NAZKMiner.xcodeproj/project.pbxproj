@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0FE1581EB6399600B76D94 /* NAZKPerson+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FE1551EB6399600B76D94 /* NAZKPerson+CoreDataClass.m */; };
+		1B0FE1591EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FE1571EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m */; };
+		1B0FE15C1EB6403D00B76D94 /* DataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FE15B1EB6403D00B76D94 /* DataStoreManager.m */; };
+		1B0FE15F1EB7123900B76D94 /* StarredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FE15E1EB7123900B76D94 /* StarredViewController.m */; };
 		1BEF9B301EB2F01A00D85720 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B2F1EB2F01A00D85720 /* main.m */; };
 		1BEF9B331EB2F01A00D85720 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B321EB2F01A00D85720 /* AppDelegate.m */; };
 		1BEF9B361EB2F01A00D85720 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B351EB2F01A00D85720 /* ViewController.m */; };
@@ -20,8 +24,6 @@
 		1BEF9B711EB3128900D85720 /* PersonSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B701EB3128900D85720 /* PersonSearchView.m */; };
 		1BEF9B741EB3B08B00D85720 /* NazkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */; };
 		1BEF9BB01EB3E4B900D85720 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */; };
-		1BEF9BBF1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BBC1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m */; };
-		1BEF9BC01EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF9BBE1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B0FE1541EB6399600B76D94 /* NAZKPerson+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NAZKPerson+CoreDataClass.h"; sourceTree = "<group>"; };
+		1B0FE1551EB6399600B76D94 /* NAZKPerson+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NAZKPerson+CoreDataClass.m"; sourceTree = "<group>"; };
+		1B0FE1561EB6399600B76D94 /* NAZKPerson+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NAZKPerson+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1B0FE1571EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NAZKPerson+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1B0FE15A1EB6403D00B76D94 /* DataStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStoreManager.h; sourceTree = "<group>"; };
+		1B0FE15B1EB6403D00B76D94 /* DataStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStoreManager.m; sourceTree = "<group>"; };
+		1B0FE15D1EB7123900B76D94 /* StarredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarredViewController.h; sourceTree = "<group>"; };
+		1B0FE15E1EB7123900B76D94 /* StarredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarredViewController.m; sourceTree = "<group>"; };
 		1BEF9B2B1EB2F01A00D85720 /* NAZKMiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NAZKMiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEF9B2F1EB2F01A00D85720 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BEF9B311EB2F01A00D85720 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,10 +78,6 @@
 		1BEF9B731EB3B08B00D85720 /* NazkAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NazkAPIManager.m; sourceTree = "<group>"; };
 		1BEF9BAE1EB3E4B900D85720 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		1BEF9BBB1EB4C37700D85720 /* NAZKPerson+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NAZKPerson+CoreDataClass.h"; path = "../NAZKPerson+CoreDataClass.h"; sourceTree = "<group>"; };
-		1BEF9BBC1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NAZKPerson+CoreDataClass.m"; path = "../NAZKPerson+CoreDataClass.m"; sourceTree = "<group>"; };
-		1BEF9BBD1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NAZKPerson+CoreDataProperties.h"; path = "../NAZKPerson+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1BEF9BBE1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NAZKPerson+CoreDataProperties.m"; path = "../NAZKPerson+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,8 @@
 				1BEF9B321EB2F01A00D85720 /* AppDelegate.m */,
 				1BEF9B341EB2F01A00D85720 /* ViewController.h */,
 				1BEF9B351EB2F01A00D85720 /* ViewController.m */,
+				1B0FE15D1EB7123900B76D94 /* StarredViewController.h */,
+				1B0FE15E1EB7123900B76D94 /* StarredViewController.m */,
 				1BEF9BAE1EB3E4B900D85720 /* WebViewController.h */,
 				1BEF9BAF1EB3E4B900D85720 /* WebViewController.m */,
 				1BEF9B761EB3B15600D85720 /* API */,
@@ -199,10 +207,12 @@
 		1BEF9BB41EB49F9600D85720 /* Datastore */ = {
 			isa = PBXGroup;
 			children = (
-				1BEF9BBB1EB4C37700D85720 /* NAZKPerson+CoreDataClass.h */,
-				1BEF9BBC1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m */,
-				1BEF9BBD1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.h */,
-				1BEF9BBE1EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m */,
+				1B0FE15A1EB6403D00B76D94 /* DataStoreManager.h */,
+				1B0FE15B1EB6403D00B76D94 /* DataStoreManager.m */,
+				1B0FE1541EB6399600B76D94 /* NAZKPerson+CoreDataClass.h */,
+				1B0FE1551EB6399600B76D94 /* NAZKPerson+CoreDataClass.m */,
+				1B0FE1561EB6399600B76D94 /* NAZKPerson+CoreDataProperties.h */,
+				1B0FE1571EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m */,
 			);
 			name = Datastore;
 			sourceTree = "<group>";
@@ -344,11 +354,13 @@
 				1BEF9B6C1EB2FEF600D85720 /* Person.m in Sources */,
 				1BEF9B361EB2F01A00D85720 /* ViewController.m in Sources */,
 				1BEF9B3C1EB2F01A00D85720 /* NAZKMiner.xcdatamodeld in Sources */,
+				1B0FE15F1EB7123900B76D94 /* StarredViewController.m in Sources */,
 				1BEF9B331EB2F01A00D85720 /* AppDelegate.m in Sources */,
 				1BEF9B741EB3B08B00D85720 /* NazkAPIManager.m in Sources */,
 				1BEF9B301EB2F01A00D85720 /* main.m in Sources */,
-				1BEF9BC01EB4C37700D85720 /* NAZKPerson+CoreDataProperties.m in Sources */,
-				1BEF9BBF1EB4C37700D85720 /* NAZKPerson+CoreDataClass.m in Sources */,
+				1B0FE1591EB6399600B76D94 /* NAZKPerson+CoreDataProperties.m in Sources */,
+				1B0FE15C1EB6403D00B76D94 /* DataStoreManager.m in Sources */,
+				1B0FE1581EB6399600B76D94 /* NAZKPerson+CoreDataClass.m in Sources */,
 				1BEF9BB01EB3E4B900D85720 /* WebViewController.m in Sources */,
 				1BEF9B691EB2FE5800D85720 /* PersonTableViewCell.m in Sources */,
 				1BEF9B711EB3128900D85720 /* PersonSearchView.m in Sources */,
@@ -587,6 +599,7 @@
 				1BEF9B5D1EB2F01A00D85720 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1BEF9B5E1EB2F01A00D85720 /* Build configuration list for PBXNativeTarget "NAZKMinerTests" */ = {
 			isa = XCConfigurationList;
@@ -595,6 +608,7 @@
 				1BEF9B601EB2F01A00D85720 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1BEF9B611EB2F01A00D85720 /* Build configuration list for PBXNativeTarget "NAZKMinerUITests" */ = {
 			isa = XCConfigurationList;
@@ -603,6 +617,7 @@
 				1BEF9B631EB2F01A00D85720 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

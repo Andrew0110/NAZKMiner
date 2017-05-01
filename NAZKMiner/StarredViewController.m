@@ -6,115 +6,82 @@
 //  Copyright © 2017 NodeAds. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "StarredViewController.h"
 #import "PersonSearchView.h"
 #import "PersonTableViewCell.h"
-#import "Person.h"
-#import "NazkAPIManager.h"
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "DataStoreManager.h"
-#import "StarredViewController.h"
+#import "Person.h"
+
 #import "NAZKPerson+CoreDataClass.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface StarredViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
-@property (nonatomic) PersonSearchView *searchView;
+@property (nonatomic) PersonSearchView *starredView;
 @property (nonatomic) NSArray *persons;
-@property (nonatomic) NSMutableArray *personsInStarred;
 @property (nonatomic) NSSet *starredIDs;
-@property (nonatomic) NazkAPIManager *manager;
 @property (nonatomic) DataStoreManager *dataManager;
 
 @end
 
-@implementation ViewController
+@implementation StarredViewController
 
 static NSString * const kPersonCellIdentifier = @"PersonSearchViewCell";
 static NSUInteger const kCellHeight = 80;
 
 - (void) loadView {
-    _searchView = [PersonSearchView new];
-    self.view = _searchView;
+    _starredView = [PersonSearchView new];
+    self.view = _starredView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _searchView.tableView.dataSource = self;
-    _searchView.tableView.delegate = self;
-    _searchView.searchBar.delegate = self;
+    _starredView.tableView.dataSource = self;
+    _starredView.tableView.delegate = self;
+    _starredView.searchBar.delegate = self;
     
-    _searchView.tableView.bounces = YES;
-    _searchView.tableView.showsVerticalScrollIndicator = YES;
-
+    _starredView.tableView.bounces = YES;
+    _starredView.tableView.showsVerticalScrollIndicator = YES;
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    _searchView.searchBar.text = @"";
+    _starredView.searchBar.text = @"";
     
     _dataManager = [DataStoreManager sharedManager];
-    _starredIDs = [_dataManager getAllIDs];
+    _persons = [_dataManager getAllPersons];
     
-    _manager = [NazkAPIManager sharedManager];
-    
-    [self.searchView.tableView registerClass: [PersonTableViewCell class]
+    [_starredView.tableView registerClass: [PersonTableViewCell class]
                       forCellReuseIdentifier: kPersonCellIdentifier];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    UIBarButtonItem* logoutButton =
-    [[UIBarButtonItem alloc] initWithTitle:@"Обрані" style:UIBarButtonItemStylePlain target:self action:@selector(watchStarredPersons)];
-    [self.navigationItem setRightBarButtonItem:logoutButton];
     [self.navigationItem setHidesBackButton:NO];
-    self.navigationItem.title = @"Пошук";
-    
-    //    [self.navigationController setNavigationBarHidden:NO];
-}
-
-#pragma mark - Properties Logic
-
--(void)setPersons:(NSArray *)persons {
-    _persons = persons;
-    
-    _personsInStarred = [NSMutableArray new];
-    for (int i = 0; i < persons.count; ++i) {
-        Person *pers = persons[i];
-        NSNumber *inStarred = [NSNumber numberWithBool:NO];
-        if ([_starredIDs containsObject:pers.identifier]) {
-            inStarred = [NSNumber numberWithBool:YES];
-        }
-        [_personsInStarred addObject:inStarred];
-    }
+    self.navigationItem.title = @"Обрані";
 }
 
 #pragma mark - Actions
 
-- (void)watchStarredPersons {
-    StarredViewController *svc = [[StarredViewController alloc] init];
-    
-    [self.navigationController pushViewController:svc
-                                         animated:YES];}
+- (void) reloadPage {
+    _persons = [_dataManager getAllPersons];
+    [_starredView.tableView reloadData];
+}
 
 - (void)starClick: (UITapGestureRecognizer *)tapGesture {
     UIImageView *imageView = (UIImageView *)tapGesture.view;
-    Person *person = _persons[imageView.tag];
-
-    if ([_personsInStarred[imageView.tag] boolValue]) {
-        [_dataManager removePersonWithID:person.identifier];
-        _personsInStarred[imageView.tag] = [NSNumber numberWithBool:NO];
-        imageView.image = [UIImage imageNamed:@"empty_star"];
-    } else {
-        [_dataManager insertPerson:person withNote:@""];
-        _personsInStarred[imageView.tag] = [NSNumber numberWithBool:YES];
-        imageView.image = [UIImage imageNamed:@"star"];
-    }
+    NAZKPerson *person = _persons[imageView.tag];
+    
+    [_dataManager removePerson:person];
+    
+    [self reloadPage];
 }
 
 - (void)openPDFLink: (UITapGestureRecognizer *)tapGesture {
     UIImageView *image = (UIImageView *)tapGesture.view;
-    Person *person = _persons[image.tag];
+    NAZKPerson *person = _persons[image.tag];
     if (person.linkPDF) {
         WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:person.linkPDF]];
         
@@ -128,24 +95,18 @@ static NSUInteger const kCellHeight = 80;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kCellHeight;
-//    return UITableViewAutomaticDimension;
+    //    return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NAZKPerson *person = (NAZKPerson*)_persons[indexPath.row];
     
-    [(PersonTableViewCell*)cell configureWithPerson:_persons[indexPath.row]];
-
-    Person *person = (Person*)_persons[indexPath.row];
-
-
+    [(PersonTableViewCell*)cell configureWithNAZKPerson:person];
+    
     UIImageView *imageStarred = ((PersonTableViewCell*)cell).starred;
-    if ([_personsInStarred[indexPath.row] boolValue]) {
-        imageStarred.image = [UIImage imageNamed:@"star"];
-    } else {
-        imageStarred.image = [UIImage imageNamed:@"empty_star"];
-    }
+    imageStarred.image = [UIImage imageNamed:@"star"];
     imageStarred.tag = indexPath.row;
     imageStarred.userInteractionEnabled = true;
     [imageStarred addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(starClick:)]];
@@ -161,7 +122,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [_searchView.searchBar resignFirstResponder];
+    [_starredView.searchBar resignFirstResponder];
     
 }
 
@@ -187,26 +148,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    _searchView.searchBar.text = @"";
+    _starredView.searchBar.text = @"";
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
     
-    _persons = @[];
-    [_searchView.tableView reloadData];
+    [self reloadPage];
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    __weak typeof(self) weakSelf = self;
-    
-    [_manager fetchPersonsWithKeyword:searchBar.text completion:^(NSArray *users)
-     {
-         weakSelf.persons = users;
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [weakSelf.searchView.tableView reloadData];
-         });
-     }];
+//    _persons = [_dataManager getAllPersonsDict];
     
     [searchBar resignFirstResponder];
 }

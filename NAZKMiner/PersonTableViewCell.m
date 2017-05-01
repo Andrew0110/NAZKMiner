@@ -8,6 +8,7 @@
 
 #import "PersonTableViewCell.h"
 #import "Person.h"
+#import "NAZKPerson+CoreDataClass.h"
 
 @implementation PersonTableViewCell
 
@@ -58,6 +59,14 @@
     _position.text = aPerson.position;
     
 }
+
+- (void)configureWithNAZKPerson:(NAZKPerson *)aNAZKPerson {
+    _lastNamelabel.text = aNAZKPerson.lastname;
+    _firstNamelabel.text = aNAZKPerson.firstname;
+    _placeOfWork.text = aNAZKPerson.placeOfWork;
+    _position.text = aNAZKPerson.position;
+}
+
 
 - (void)layoutSubviews {
     [super layoutSubviews];

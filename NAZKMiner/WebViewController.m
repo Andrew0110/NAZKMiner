@@ -19,7 +19,6 @@
 
 - (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
-    //NSLog(@"%@", url);
     _url = url;
     
     return self;

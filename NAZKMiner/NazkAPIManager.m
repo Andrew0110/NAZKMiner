@@ -37,7 +37,7 @@ static NSString * const kBaseURL = @"https://public-api.nazk.gov.ua/v1/declarati
 - (void)fetchPersonsWithKeyword:(NSString *)keyword completion:(void (^)(NSArray *))completion {
     NSString *requestURL = [NSString stringWithFormat:@"%@%@", kBaseURL, [keyword stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     
-    NSLog(@"%@", requestURL);
+    //NSLog(@"%@", requestURL);
 
     
     NSURLSessionConfiguration *config =[NSURLSessionConfiguration defaultSessionConfiguration];

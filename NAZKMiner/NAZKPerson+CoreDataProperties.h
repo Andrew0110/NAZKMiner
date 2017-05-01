@@ -2,7 +2,7 @@
 //  NAZKPerson+CoreDataProperties.h
 //  NAZKMiner
 //
-//  Created by Andrew on 29.04.17.
+//  Created by Andrew on 30.04.17.
 //  Copyright © 2017 NodeAds. All rights reserved.
 //
 
@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<NAZKPerson *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSString *identifier;
 @property (nullable, nonatomic, copy) NSString *firstname;
+@property (nullable, nonatomic, copy) NSString *identifier;
 @property (nullable, nonatomic, copy) NSString *lastname;
-@property (nullable, nonatomic, copy) NSString *placeOfWork;
-@property (nullable, nonatomic, copy) NSString *position;
 @property (nullable, nonatomic, copy) NSString *linkPDF;
 @property (nullable, nonatomic, copy) NSString *notes;
+@property (nullable, nonatomic, copy) NSString *placeOfWork;
+@property (nullable, nonatomic, copy) NSString *position;
 
 @end
 
