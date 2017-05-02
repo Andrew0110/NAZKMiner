@@ -10,7 +10,7 @@
 
 @implementation StarredPersonView
 
-static CGFloat const kSearchBarHeight = 44;
+//static CGFloat const kSearchBarHeight = 44;
 
 - (instancetype)init
 {

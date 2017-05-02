@@ -21,7 +21,5 @@
 @property (nonatomic) UIImageView   *linkPDF;
 
 - (void)configureWithPerson:(Person *)aPerson;
-- (void)configureWithNAZKPerson:(NAZKPerson *)aNAZKPerson;
-
 
 @end

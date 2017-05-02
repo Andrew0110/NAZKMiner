@@ -12,8 +12,6 @@
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "DataStoreManager.h"
-#import "Person.h"
-
 #import "NAZKPerson+CoreDataClass.h"
 
 @interface StarredViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UITextViewDelegate>
@@ -22,6 +20,7 @@
 @property (nonatomic) NSArray *persons;
 @property (nonatomic) NSSet *starredIDs;
 @property (nonatomic) DataStoreManager *dataManager;
+
 
 @end
 
@@ -44,6 +43,8 @@ static NSUInteger const kCellHeight = 120;
     
     _starredView.tableView.bounces = YES;
     _starredView.tableView.showsVerticalScrollIndicator = YES;
+    
+    
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -94,7 +95,6 @@ static NSUInteger const kCellHeight = 120;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kCellHeight;
-    //    return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -108,8 +108,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     notes.delegate = self;
     notes.editable = YES;
     notes.tag = indexPath.row;
-    
-
     
     UIImageView *imageStarred = ((StarredPersonTableViewCell*)cell).starred;
     imageStarred.image = [UIImage imageNamed:@"star"];
@@ -172,7 +170,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-//    _persons = [_dataManager getAllPersonsDict];
     
     [searchBar resignFirstResponder];
 }

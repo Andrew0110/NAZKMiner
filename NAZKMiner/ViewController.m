@@ -44,10 +44,14 @@ static NSUInteger const kCellHeight = 80;
     _searchView.tableView.dataSource = self;
     _searchView.tableView.delegate = self;
     _searchView.searchBar.delegate = self;
+    _searchView.searchBar.placeholder = @"Введіть параметри та запустіть пошук";
     
     _searchView.tableView.bounces = YES;
     _searchView.tableView.showsVerticalScrollIndicator = YES;
-
+    _searchView.tableView.rowHeight = UITableViewAutomaticDimension;
+    _searchView.tableView.estimatedRowHeight = kCellHeight;
+    
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     _searchView.searchBar.text = @"";
@@ -69,8 +73,6 @@ static NSUInteger const kCellHeight = 80;
     [self.navigationItem setRightBarButtonItem:logoutButton];
     [self.navigationItem setHidesBackButton:NO];
     self.navigationItem.title = @"Пошук";
-    
-    //    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark - Properties Logic
@@ -147,7 +149,6 @@ static NSUInteger const kCellHeight = 80;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kCellHeight;
-//    return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView

@@ -26,6 +26,7 @@
 
 - (void) loadView {
     _webView = [UIWebView new];
+    _webView.scalesPageToFit = YES;
     self.view = _webView;
 }
 

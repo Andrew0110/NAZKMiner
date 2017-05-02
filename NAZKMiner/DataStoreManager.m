@@ -46,7 +46,9 @@
     NSEntityDescription* description = [NSEntityDescription entityForName:@"NAZKPerson" inManagedObjectContext:_context];
     
     [request setEntity: description];
-//    [request setResultType:NSDictionaryResultType];
+    NSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastname" ascending:true];
+    NSSortDescriptor *firstNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"firstname" ascending:true];
+    [request setSortDescriptors:@[lastNameSortDescriptor, firstNameSortDescriptor]];
     NSError* error = nil;
     NSArray *resultArray = [_context executeFetchRequest:request error:&error];
     

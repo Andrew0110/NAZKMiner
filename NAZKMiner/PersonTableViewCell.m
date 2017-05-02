@@ -8,7 +8,6 @@
 
 #import "PersonTableViewCell.h"
 #import "Person.h"
-#import "NAZKPerson+CoreDataClass.h"
 
 @implementation PersonTableViewCell
 
@@ -55,18 +54,9 @@
 - (void)configureWithPerson:(Person *)aPerson {
     _lastNamelabel.text = aPerson.lastName;
     _firstNamelabel.text = aPerson.firstName;
-    _placeOfWork.text = aPerson.placeOfWork;
-    _position.text = aPerson.position;
-    
+    _placeOfWork.text = [NSString stringWithFormat:@"Організація: %@",aPerson.placeOfWork];
+    _position.text = [NSString stringWithFormat:@"Посада: %@", aPerson.position];
 }
-
-- (void)configureWithNAZKPerson:(NAZKPerson *)aNAZKPerson {
-    _lastNamelabel.text = aNAZKPerson.lastname;
-    _firstNamelabel.text = aNAZKPerson.firstname;
-    _placeOfWork.text = aNAZKPerson.placeOfWork;
-    _position.text = aNAZKPerson.position;
-}
-
 
 - (void)layoutSubviews {
     [super layoutSubviews];
