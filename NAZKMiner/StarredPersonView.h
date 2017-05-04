@@ -10,7 +10,6 @@
 
 @interface StarredPersonView : UIView
 
-@property (nonatomic) UISearchBar *searchBar;
 @property (nonatomic) UITableView *tableView;
 
 @end

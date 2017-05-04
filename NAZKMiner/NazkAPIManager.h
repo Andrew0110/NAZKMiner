@@ -10,8 +10,12 @@
 
 @interface NazkAPIManager : NSObject
 
+@property (nonatomic) Boolean hasConnection;
+
 + (NazkAPIManager *)sharedManager;
 
--(void)fetchPersonsWithKeyword:(NSString *)keyword completion:(void (^)(NSArray *))completion;
+-(void)fetchPersonsWithKeyword:(NSString *)keyword completion:(void (^)(NSArray *, int))completion;
+-(void)fetchPersonsWithKeyword:(NSString *)keyword page:(int)page completion:(void (^)(NSArray *, int))completion;
+
 
 @end

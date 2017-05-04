@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class Person;
-@class NAZKPerson;
 
 @interface PersonTableViewCell : UITableViewCell
 
@@ -21,5 +20,7 @@
 @property (nonatomic) UIImageView   *linkPDF;
 
 - (void)configureWithPerson:(Person *)aPerson;
+
++ (CGFloat)calculateCellHeightWithPerson:(Person *)aPerson ;
 
 @end

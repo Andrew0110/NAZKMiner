@@ -13,8 +13,8 @@
 
 @interface StarredPersonTableViewCell : UITableViewCell
 
-@property (nonatomic) UILabel       *firstNamelabel;
-@property (nonatomic) UILabel       *lastNamelabel;
+@property (nonatomic) UILabel       *firstName;
+@property (nonatomic) UILabel       *lastName;
 @property (nonatomic) UILabel       *placeOfWork;
 @property (nonatomic) UILabel       *position;
 @property (nonatomic) UITextView    *notes;
@@ -23,5 +23,6 @@
 
 - (void)configureWithNAZKPerson:(NAZKPerson *)aNAZKPerson;
 
++ (CGFloat)calculateCellHeightWithPerson:(NAZKPerson *)aPerson;
 
 @end

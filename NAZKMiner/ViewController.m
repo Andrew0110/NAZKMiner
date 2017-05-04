@@ -22,16 +22,19 @@
 @property (nonatomic) PersonSearchView *searchView;
 @property (nonatomic) NSArray *persons;
 @property (nonatomic) NSMutableArray *personsInStarred;
+@property (nonatomic) NSMutableArray *cellHeights;
 @property (nonatomic) NSSet *starredIDs;
 @property (nonatomic) NazkAPIManager *manager;
 @property (nonatomic) DataStoreManager *dataManager;
+@property (nonatomic) UITableViewCell *progressCell;
+@property (nonatomic) int nextPage;
+@property (nonatomic) Boolean isLoading;
 
 @end
 
 @implementation ViewController
 
 static NSString * const kPersonCellIdentifier = @"PersonSearchViewCell";
-static NSUInteger const kCellHeight = 80;
 
 - (void) loadView {
     _searchView = [PersonSearchView new];
@@ -48,9 +51,6 @@ static NSUInteger const kCellHeight = 80;
     
     _searchView.tableView.bounces = YES;
     _searchView.tableView.showsVerticalScrollIndicator = YES;
-    _searchView.tableView.rowHeight = UITableViewAutomaticDimension;
-    _searchView.tableView.estimatedRowHeight = kCellHeight;
-    
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -63,6 +63,23 @@ static NSUInteger const kCellHeight = 80;
     
     [self.searchView.tableView registerClass: [PersonTableViewCell class]
                       forCellReuseIdentifier: kPersonCellIdentifier];
+    
+    _progressCell = [UITableViewCell new];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]
+                                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    indicator.color = [UIColor grayColor];
+    UIView* rootView = _progressCell.contentView;
+    indicator.center = rootView.center;
+    [_progressCell.contentView addSubview:indicator];
+    [indicator startAnimating];
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"Зачекайте, йде загрузка";
+    label.font = [UIFont systemFontOfSize:12];
+    [label sizeToFit];
+    label.center = CGPointMake(rootView.center.x, rootView.center.y+20);
+    [_progressCell.contentView addSubview:label];
+    _isLoading = false;
+    _nextPage = 0;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -79,7 +96,7 @@ static NSUInteger const kCellHeight = 80;
 
 -(void)setPersons:(NSArray *)persons {
     _persons = persons;
-    
+    _cellHeights = [NSMutableArray new];
     _personsInStarred = [NSMutableArray new];
     for (int i = 0; i < persons.count; ++i) {
         Person *pers = persons[i];
@@ -88,6 +105,7 @@ static NSUInteger const kCellHeight = 80;
             inStarred = [NSNumber numberWithBool:YES];
         }
         [_personsInStarred addObject:inStarred];
+        [_cellHeights addObject:[NSNumber numberWithFloat:0.f]];
     }
 }
 
@@ -96,8 +114,9 @@ static NSUInteger const kCellHeight = 80;
 - (void)watchStarredPersons {
     StarredViewController *svc = [[StarredViewController alloc] init];
     
-    [self.navigationController pushViewController:svc
-                                         animated:YES];}
+    [self.navigationController pushViewController:svc animated:YES];
+
+}
 
 - (void)starClick: (UITapGestureRecognizer *)tapGesture {
     UIImageView *imageView = (UIImageView *)tapGesture.view;
@@ -144,17 +163,48 @@ static NSUInteger const kCellHeight = 80;
     }
 }
 
+- (void)loadPersonsWithKeyword:(NSString*)keyword {
+    __weak typeof(self) weakSelf = self;
+    
+    [_manager fetchPersonsWithKeyword:keyword page:_nextPage completion:^(NSArray *users, int nextPage)
+     {
+         if (weakSelf.nextPage > 1) {
+             weakSelf.persons = [weakSelf.persons arrayByAddingObjectsFromArray:users];
+         } else {
+             weakSelf.persons = users;
+         }
+         weakSelf.isLoading = true;
+         weakSelf.nextPage = nextPage;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [weakSelf.searchView.tableView reloadData];
+             weakSelf.isLoading = false;
+         });
+         NSLog(@"%d", nextPage);
+         
+     }];
+}
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kCellHeight;
+    if (indexPath.row == _persons.count) {
+        return 60;
+    }
+    if ([[_cellHeights objectAtIndex:indexPath.row] floatValue] < 1.f) {
+        [_cellHeights insertObject:[NSNumber numberWithFloat:[PersonTableViewCell calculateCellHeightWithPerson:_persons[indexPath.row]]] atIndex:indexPath.row];
+    }
+    return [_cellHeights[indexPath.row] floatValue];
 }
 
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == _persons.count) {
+        if (!_isLoading) {
+            [self loadPersonsWithKeyword:_searchView.searchBar.text];
+        }
+        return;
+    }
     [(PersonTableViewCell*)cell configureWithPerson:_persons[indexPath.row]];
 
     Person *person = (Person*)_persons[indexPath.row];
@@ -189,10 +239,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _persons.count;
+    if (_nextPage == -1 || _persons.count == 0) {
+        return _persons.count;
+    }
+    return _persons.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == _persons.count) {
+        return _progressCell;
+    }
     PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPersonCellIdentifier forIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -208,26 +264,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     _searchView.searchBar.text = @"";
+    
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-    
+    _nextPage = 0;
     _persons = @[];
     [_searchView.tableView reloadData];
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    __weak typeof(self) weakSelf = self;
-    
-    [_manager fetchPersonsWithKeyword:searchBar.text completion:^(NSArray *users)
-     {
-         weakSelf.persons = users;
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [weakSelf.searchView.tableView reloadData];
-         });
-     }];
-    
+    _nextPage = 0;
+    [self loadPersonsWithKeyword:searchBar.text];
     [searchBar resignFirstResponder];
 }
 

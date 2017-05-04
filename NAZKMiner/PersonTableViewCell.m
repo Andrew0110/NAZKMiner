@@ -11,6 +11,14 @@
 
 @implementation PersonTableViewCell
 
+static NSUInteger const kVertMargin = 5;
+static NSUInteger const kLabelHeight = 15;
+static NSUInteger const kHorMargin = 8;
+static NSUInteger const kImageWidth = 30;
+static NSUInteger const kImageHeight = 30;
+
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
@@ -20,23 +28,25 @@
         
         _firstNamelabel = [UILabel new];
         _firstNamelabel.font = [UIFont systemFontOfSize:14];
+        _firstNamelabel.textAlignment = NSTextAlignmentCenter;
 //        _firstNamelabel.numberOfLines = 0;
         [self addSubview:_firstNamelabel];
         
         _lastNamelabel = [UILabel new];
+        _lastNamelabel.textAlignment = NSTextAlignmentCenter;
         _lastNamelabel.font = [UIFont boldSystemFontOfSize:14];
 //        _lastNamelabel.numberOfLines = 0;
         [self addSubview:_lastNamelabel];
         
         _placeOfWork = [UILabel new];
         _placeOfWork.font = [UIFont systemFontOfSize:10];
-//        _placeOfWork.lineBreakMode = NSLineBreakByWordWrapping;
+        _placeOfWork.lineBreakMode = NSLineBreakByWordWrapping;
         _placeOfWork.numberOfLines = 0;
         [self addSubview:_placeOfWork];
         
         _position = [UILabel new];
         _position.font = [UIFont italicSystemFontOfSize:10];
-//        _position.lineBreakMode = NSLineBreakByWordWrapping;
+        _position.lineBreakMode = NSLineBreakByWordWrapping;
         _position.numberOfLines = 0;
         [self addSubview:_position];
         
@@ -58,18 +68,41 @@
     _position.text = [NSString stringWithFormat:@"Посада: %@", aPerson.position];
 }
 
++ (CGFloat)calculateCellHeightWithPerson:(Person *)aPerson {
+    CGFloat height = 5 * kVertMargin + 2 * kLabelHeight;
+    
+    UIFont* font = [UIFont systemFontOfSize:10.f];
+    
+    NSMutableParagraphStyle* paragraph = [[NSMutableParagraphStyle alloc] init];
+    [paragraph setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    NSDictionary* attributes =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     font , NSFontAttributeName,
+     paragraph, NSParagraphStyleAttributeName, nil];
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGRect rect1 = [[NSString stringWithFormat:@"Організація: %@", aPerson.placeOfWork] boundingRectWithSize:CGSizeMake(width - 2 * kHorMargin, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil];
+    CGRect rect2 = [[NSString stringWithFormat:@"Посада: %@", aPerson.position] boundingRectWithSize:CGSizeMake(width - 2 * kHorMargin, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil];
+    height += rect1.size.height + rect2.size.height;
+
+    return height;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
     CGFloat rowWidth = self.frame.size.width;
     
-    _lastNamelabel.frame = CGRectMake(10, 10, rowWidth-85, 15);
-    _firstNamelabel.frame = CGRectMake(10, 25, rowWidth-85, 15);
-    _placeOfWork.frame = CGRectMake(10, 45, rowWidth-10, 12);
-    _position.frame = CGRectMake(10, 60, rowWidth-10, 12);
+    _lastNamelabel.frame = CGRectMake(kHorMargin, kVertMargin, rowWidth-2*kImageWidth - 2*kHorMargin, kLabelHeight);
+    _firstNamelabel.frame = CGRectMake(kHorMargin, CGRectGetMaxY(_lastNamelabel.frame)+kVertMargin, rowWidth-2*kImageWidth - 2*kHorMargin, kLabelHeight);
+    _placeOfWork.frame = CGRectMake(kHorMargin, CGRectGetMaxY(_firstNamelabel.frame)+kVertMargin, rowWidth-kHorMargin, 0);
+    [_placeOfWork sizeToFit];
+    _position.frame = CGRectMake(kHorMargin, CGRectGetMaxY(_placeOfWork.frame)+kVertMargin, rowWidth-kHorMargin, 0);
+    [_position sizeToFit];
 
-    _starred.frame = CGRectMake(rowWidth - 75, 5, 30, 30);
-    _linkPDF.frame = CGRectMake(rowWidth - 40, 5, 30, 30);
+    _starred.frame = CGRectMake(rowWidth - 2*kImageWidth - 2*kHorMargin, kVertMargin, kImageWidth, kImageHeight);
+    _linkPDF.frame = CGRectMake(rowWidth - kImageWidth - kHorMargin, kVertMargin, kImageWidth, kImageHeight);
 
 }
 

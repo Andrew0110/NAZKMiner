@@ -12,11 +12,12 @@
 
 @implementation NazkAPIManager
 
-static NSString * const kBaseURL = @"https://public-api.nazk.gov.ua/v1/declaration/?q=";
+static NSString * const kBaseURL = @"https://public-api.nazk.gov.ua/v1/declaration/";
 
 - (instancetype)init {
     self = [super init];
     if (self) {
+        _hasConnection = true;
         //        _accessToken = kAccessToken;
     }
     
@@ -34,10 +35,13 @@ static NSString * const kBaseURL = @"https://public-api.nazk.gov.ua/v1/declarati
     return manager;
 }
 
-- (void)fetchPersonsWithKeyword:(NSString *)keyword completion:(void (^)(NSArray *))completion {
-    NSString *requestURL = [NSString stringWithFormat:@"%@%@", kBaseURL, [keyword stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+- (void)fetchPersonsWithKeyword:(NSString *)keyword page:(int)page completion:(void (^)(NSArray *, int))completion {
+    if (page < 1) {
+        page = 1;
+    }
+    NSString *requestURL = [NSString stringWithFormat:@"%@?q=%@&page=%d", kBaseURL, [keyword stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]], page];
     
-    //NSLog(@"%@", requestURL);
+    NSLog(@"%@", requestURL);
 
     
     NSURLSessionConfiguration *config =[NSURLSessionConfiguration defaultSessionConfiguration];
@@ -58,20 +62,35 @@ static NSString * const kBaseURL = @"https://public-api.nazk.gov.ua/v1/declarati
                                     delegate:nil
                                 cancelButtonTitle:@"Ok"
                                 otherButtonTitles:nil];
-                            [alertView show];
+                               [alertView show];
+                               _hasConnection = false;
                         } else {
+                            _hasConnection = true;
                             NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                             NSMutableArray *persons = [NSMutableArray array];
+                            int currentPage = [[[jsonObject objectForKey:@"page"] objectForKey:@"currentPage"] integerValue];
+                            int batchSize = [[[jsonObject objectForKey:@"page"] objectForKey:@"batchSize"] integerValue];
+                            int totalItems = [[[jsonObject objectForKey:@"page"] objectForKey:@"totalItems"] integerValue];
+                            int nextPage = currentPage + 1;
+                            if (batchSize == 0) {
+                                nextPage = -1;
+                            } else if (nextPage > totalItems/batchSize) {
+                                nextPage = -1;
+                            }
                             for ( NSDictionary *dict in [jsonObject objectForKey:@"items"]) {
                                 [persons addObject:[Person personFromDict:dict]];
                             }
                             if (completion) {
-                                completion(persons);
+                                completion(persons, nextPage);
                             }
                         }
                     }];
     [dataTask resume];
-
 }
+
+-(void)fetchPersonsWithKeyword:(NSString *)keyword completion:(void (^)(NSArray *, int))completion {
+    [self fetchPersonsWithKeyword:keyword page:0 completion:completion];
+}
+
 
 @end

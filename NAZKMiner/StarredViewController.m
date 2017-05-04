@@ -20,13 +20,15 @@
 @property (nonatomic) NSArray *persons;
 @property (nonatomic) NSSet *starredIDs;
 @property (nonatomic) DataStoreManager *dataManager;
+@property (nonatomic) NSMutableArray *cellHeights;
+
 
 
 @end
 
 @implementation StarredViewController
 
-static NSString * const kStarredPersonCellIdentifier = @"PersonSearchViewCell";
+static NSString * const kStarredPersonCellIdentifier = @"StarredPersonViewCell";
 static NSUInteger const kCellHeight = 120;
 
 - (void) loadView {
@@ -39,19 +41,17 @@ static NSUInteger const kCellHeight = 120;
     
     _starredView.tableView.dataSource = self;
     _starredView.tableView.delegate = self;
-    _starredView.searchBar.delegate = self;
     
     _starredView.tableView.bounces = YES;
     _starredView.tableView.showsVerticalScrollIndicator = YES;
     
-    
+    _starredView.tableView.rowHeight = UITableViewAutomaticDimension;
+    _starredView.tableView.estimatedRowHeight = kCellHeight;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    _starredView.searchBar.text = @"";
-    
     _dataManager = [DataStoreManager sharedManager];
-    _persons = [_dataManager getAllPersons];
+    [self reloadPage];
     
     [_starredView.tableView registerClass: [StarredPersonTableViewCell class] forCellReuseIdentifier: kStarredPersonCellIdentifier];
 }
@@ -67,6 +67,10 @@ static NSUInteger const kCellHeight = 120;
 
 - (void) reloadPage {
     _persons = [_dataManager getAllPersons];
+    _cellHeights = [NSMutableArray new];
+    for (int i = 0; i<_persons.count; ++i) {
+        [_cellHeights addObject:[NSNumber numberWithFloat:0.f]];
+    }
     [_starredView.tableView reloadData];
 }
 
@@ -94,7 +98,12 @@ static NSUInteger const kCellHeight = 120;
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kCellHeight;
+//    return kCellHeight;
+//    return UITableViewAutomaticDimension;
+    if ([[_cellHeights objectAtIndex:indexPath.row] floatValue] < 1.f) {
+        [_cellHeights insertObject:[NSNumber numberWithFloat:[StarredPersonTableViewCell calculateCellHeightWithPerson:_persons[indexPath.row]]] atIndex:indexPath.row];
+    }
+    return [_cellHeights[indexPath.row] floatValue];
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -126,8 +135,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [_starredView.searchBar resignFirstResponder];
-    
 }
 
 
@@ -150,28 +157,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)textViewDidChange:(UITextView *)textView {
     NAZKPerson *pers = _persons[textView.tag];
     [_dataManager updateNote:textView.text forPerson:pers];
-}
-
-
-
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [searchBar setShowsCancelButton:YES animated:YES];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    _starredView.searchBar.text = @"";
-    [searchBar setShowsCancelButton:NO animated:YES];
-    [searchBar resignFirstResponder];
     
-    [self reloadPage];
-}
-
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    [searchBar resignFirstResponder];
+    [_starredView.tableView reloadData];
 }
 
 

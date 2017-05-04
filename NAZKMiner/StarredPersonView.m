@@ -24,8 +24,6 @@
         [self addSubview:_tableView];
         
         
-        _searchBar = [UISearchBar new];
-        //[self addSubview:_searchBar];
     }
     return self;
 }
