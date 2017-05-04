@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NAZKMiner/StarredPersonTableViewCell.m"
-            timestampString = "515596963.010982"
+            timestampString = "515600600.336707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-configureWithNAZKPerson:"
             landmarkType = "7">
          </BreakpointContent>

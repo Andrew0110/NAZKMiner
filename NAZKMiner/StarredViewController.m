@@ -154,11 +154,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 #pragma mark - UITextViewDelegate
 
-- (void)textViewDidChange:(UITextView *)textView {
+- (void)textViewDidEndEditing:(UITextView *)textView {
     NAZKPerson *pers = _persons[textView.tag];
     [_dataManager updateNote:textView.text forPerson:pers];
     
-    [_starredView.tableView reloadData];
 }
 
 
